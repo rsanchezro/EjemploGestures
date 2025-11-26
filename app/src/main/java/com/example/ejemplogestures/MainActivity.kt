@@ -44,54 +44,41 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ejemplogestures.ui.theme.EjemploGesturesTheme
+import com.example.ejemplogestures.viewmodel.MiViewModel
 import kotlin.math.abs
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+
         setContent {
             EjemploGesturesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
 
-                        Modifier.padding(innerPadding)
+                        Modifier.padding(innerPadding), MiViewModel()
                     )
                 }
             }
         }
     }
 }
-/*
-Funcion que devuelve una lista de 16 valores enteros, con dos elementos con
-valores 2 o 4 y el resto -1
- */
-fun generaListaAleatoria(): List<Int> {
-    //Genero 16 elementos con valor -1
-    val resultado = MutableList(16) { -1 }   // 14 valores -1 y luego reemplazamos 2
 
-    // Elegimos 2 posiciones aleatorias distintas
-    //shufled devuelve un List de enteros con los valores indicados ahí desordenados
-    //aleatoriamente, y take toma los x primeros elementos de la lista y devuelve
-    //otra lista
-    val posiciones_aleatorias = (0 until 16).shuffled().take(2)
 
-    // Asignamos a esas posiciones un 2 o un 4 aleatorio
-    posiciones_aleatorias.forEach { index ->
-        resultado[index] = listOf(2, 4).random()
-    }
 
-    return resultado
-}
-
-@Preview
 @Composable
-fun Greeting(modificador: Modifier= Modifier)
+fun Greeting(modificador: Modifier= Modifier,miview: MiViewModel)
 {
     var direccion by remember { mutableStateOf("") }
     var desplazamiento by remember { mutableStateOf(Offset(0f,0f)) }
-    //Crea una lista de 16 elementos
-    val numeros = generaListaAleatoria()
+    //Instancio el objeto viewModel que solo se va a instanciar 1 vez
+    val miviewModel= MiViewModel()
+    //declaro la variable numeros como un State
+    val numeros by miview.numeros
+
 
     Box(
         modifier = modificador
@@ -214,10 +201,10 @@ fun Greeting1(name: String, modifier: Modifier = Modifier) {
 
 }
 
-@Preview(showBackground = false)
+
 @Composable
 fun GreetingPreview() {
     EjemploGesturesTheme {
-        Greeting()
+       // Greeting()
     }
 }
