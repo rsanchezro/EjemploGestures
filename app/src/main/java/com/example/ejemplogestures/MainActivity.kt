@@ -75,7 +75,7 @@ fun Greeting(modificador: Modifier= Modifier,miview: MiViewModel)
     var direccion by remember { mutableStateOf("") }
     var desplazamiento by remember { mutableStateOf(Offset(0f,0f)) }
     //Instancio el objeto viewModel que solo se va a instanciar 1 vez
-    val miviewModel= MiViewModel()
+
     //declaro la variable numeros como un State
     val numeros by miview.numeros
 

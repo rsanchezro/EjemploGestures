@@ -4,7 +4,7 @@ package com.example.ejemplogestures.utilidades
 Funcion que devuelve una lista de 16 valores enteros, con dos elementos con
 valores 2 o 4 y el resto -1
  */
-fun generaListaAleatoria(): List<Int> {
+fun generaListaAleatoria(): MutableList<Int> {
     //Genero 16 elementos con valor -1
     val resultado = MutableList(16) { -1 }   // 14 valores -1 y luego reemplazamos 2
 

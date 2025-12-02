@@ -12,9 +12,8 @@ class MiViewModel: ViewModel() {
         public val numeros: State<List<Int>> = _numeros
     // Cambiar un valor específico
     fun actualizarNumero(pos: Int, valor: Int) {
-        val nuevaLista = _numeros.value.toMutableList() // copia mutable
-        nuevaLista[pos] = valor
-        _numeros.value = nuevaLista
+
+        _numeros.value[pos] = valor
     }
         // Opcional: función para reiniciar la lista
         fun reiniciar() {
